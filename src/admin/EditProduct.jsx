@@ -208,7 +208,7 @@ export default function EditProduct() {
             <div key={index} className="relative">
 
               <img
-                src={`http://localhost:5000${img}`}
+                src={`https://priti-backend.onrender.com${img}`}
                 className="w-24 h-24 object-cover rounded"
               />
 
