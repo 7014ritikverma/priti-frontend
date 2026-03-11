@@ -68,7 +68,7 @@ export default function AddProduct() {
     });
 
     await axios.post(
-      "http://localhost:5000/api/products/add",
+      "https://priti-backend.onrender.com/api/products/add",
       formData
     );
 

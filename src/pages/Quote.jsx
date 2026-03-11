@@ -31,7 +31,7 @@ export default function Quote() {
         };
 
         await axios.post(
-            "http://localhost:5000/api/inquiries",
+            "https://priti-backend.onrender.com/api/inquiries",
             formData
         );
 
@@ -86,9 +86,9 @@ export default function Quote() {
                         <img
                             src={
                                 item.images?.length
-                                    ? `http://localhost:5000${item.images[0]}`
+                                    ? `https://priti-backend.onrender.com${item.images[0]}`
                                     : item.image
-                                        ? `http://localhost:5000${item.image}`
+                                        ? `https://priti-backend.onrender.com${item.image}`
                                         : "/no-image.png"
                             }
                             alt={item.name}

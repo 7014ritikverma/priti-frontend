@@ -27,7 +27,7 @@ export default function MagnifierImage({ img }) {
 
       <img
         ref={imgRef}
-        src={`http://localhost:5000${img}`}
+        src={`https://priti-backend.onrender.com${img}`}
         className="w-full h-full object-cover rounded"
         alt=""
       />
@@ -36,7 +36,7 @@ export default function MagnifierImage({ img }) {
         <div
           className="absolute inset-0 rounded pointer-events-none"
           style={{
-            backgroundImage: `url(http://localhost:5000${img})`,
+            backgroundImage: `url(https://priti-backend.onrender.com${img})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "200%",
             backgroundPosition: backgroundPos

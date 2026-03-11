@@ -14,7 +14,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`https://priti-backend.onrender.com/api/products/${id}`)
       .then(res => setProduct(res.data));
   }, [id]);
 
@@ -44,7 +44,7 @@ export default function ProductDetail() {
             {images.map((img, i) => (
               <img
                 key={i}
-                src={`http://localhost:5000${img}`}
+                src={`https://priti-backend.onrender.com${img}`}
                 onClick={() => setActiveImg(i)}
                 className={`w-20 h-20 object-cover cursor-pointer border rounded
                   ${activeImg === i ? "border-black" : "border-gray-300"}

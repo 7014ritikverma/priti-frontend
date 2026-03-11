@@ -10,12 +10,12 @@ export default function Dashboard() {
 
     // Fetch products
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://priti-backend.onrender.com/api/products")
       .then(res => setProducts(res.data.length));
 
     // Fetch inquiries
     axios
-      .get("http://localhost:5000/api/inquiries")
+      .get("https://priti-backend.onrender.com/api/inquiries")
       .then(res => setInquiries(res.data.length));
 
   }, []);

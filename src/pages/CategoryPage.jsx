@@ -15,7 +15,7 @@ export default function CategoryPage() {
 
         axios
             .get(
-                `http://localhost:5000/api/products/category/${category}/${sub}`
+                `https://priti-backend.onrender.com/api/products/category/${category}/${sub}`
             )
             .then(res => setProducts(res.data));
 
@@ -41,7 +41,7 @@ export default function CategoryPage() {
 
                         <img
                         onClick={() => navigate(`/product/${p._id}`)}
-                            src={`http://localhost:5000${p.images?.[0]}`}
+                            src={`https://priti-backend.onrender.com${p.images?.[0]}`}
                             alt={p.name}
                             className="h-48 w-full object-cover rounded-t mb-3"
                         />

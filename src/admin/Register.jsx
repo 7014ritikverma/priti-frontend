@@ -16,7 +16,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/admin/register",
+        "https://priti-backend.onrender.com/api/admin/register",
         data
       );
 

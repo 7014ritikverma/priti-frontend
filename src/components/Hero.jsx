@@ -6,7 +6,7 @@ export default function Hero() {
 
       {/* Background Image */}
       <img
-        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7"
+        src="hero.png"
         alt="Furniture"
         className="w-full h-[520px] object-cover"
       />

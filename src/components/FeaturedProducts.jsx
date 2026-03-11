@@ -19,7 +19,7 @@ export default function FeaturedProducts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://priti-backend.onrender.com/api/products")
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -45,9 +45,9 @@ export default function FeaturedProducts() {
               onClick={() => navigate(`/product/${p._id}`)}
               src={
                 p.images?.length
-                  ? `http://localhost:5000${p.images[0]}`
+                  ? `https://priti-backend.onrender.com${p.images[0]}`
                   : p.image
-                    ? `http://localhost:5000${p.image}`
+                    ? `https://priti-backend.onrender.com${p.image}`
                     : "/no-image.png"
               }
               alt={p.name}

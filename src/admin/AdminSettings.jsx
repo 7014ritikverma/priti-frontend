@@ -14,7 +14,7 @@ export default function AdminSettings() {
     try {
 
       await axios.put(
-        "http://localhost:5000/api/admin/update-admin",
+        "https://priti-backend.onrender.com/api/admin/update-admin",
         {
           email,
           oldPassword,

@@ -13,7 +13,7 @@ export default function ProductGallery({ product }) {
 
   return (
     <img
-      src={`http://localhost:5000${images[0]}`}
+      src={`https://priti-backend.onrender.com${images[0]}`}
       alt={product.name}
       className="w-[400px] h-[400px] object-cover rounded"
     />

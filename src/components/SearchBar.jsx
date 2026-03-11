@@ -20,7 +20,7 @@ export default function SearchBar() {
         }
 
         const res = await axios.get(
-            `http://localhost:5000/api/products/search?q=${value}`
+            `https://priti-backend.onrender.com/api/products/search?q=${value}`
         );
 
         setResults(res.data);
@@ -57,7 +57,7 @@ export default function SearchBar() {
                         >
 
                             <img
-                                src={`http://localhost:5000${p.images?.[0]}`}
+                                src={`https://priti-backend.onrender.com${p.images?.[0]}`}
                                 className="w-12 h-12 object-cover rounded"
                             />
 

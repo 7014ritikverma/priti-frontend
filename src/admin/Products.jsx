@@ -10,7 +10,7 @@ export default function ProductsAdmin() {
     // Fetch products
     const loadProducts = () => {
         axios
-            .get("http://localhost:5000/api/products")
+            .get("https://priti-backend.onrender.com/api/products")
             .then(res => setProducts(res.data));
     };
 
@@ -24,7 +24,7 @@ export default function ProductsAdmin() {
         if (!window.confirm("Delete this product?")) return;
 
         await axios.delete(
-            `http://localhost:5000/api/products/${id}`
+            `https://priti-backend.onrender.com/api/products/${id}`
         );
 
         alert("Product Deleted");
@@ -60,9 +60,9 @@ export default function ProductsAdmin() {
                                 <img
                                     src={
                                         p.images?.length
-                                            ? `http://localhost:5000${p.images[0]}`
+                                            ? `https://priti-backend.onrender.com${p.images[0]}`
                                             : p.image
-                                                ? `http://localhost:5000${p.image}`
+                                                ? `https://priti-backend.onrender.com${p.image}`
                                                 : ""
                                     }
                                     className="h-16 w-20 object-cover object-center"

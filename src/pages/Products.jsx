@@ -11,7 +11,7 @@ export default function Products() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://priti-backend.onrender.com/api/products")
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -35,7 +35,7 @@ export default function Products() {
           >
 
             <img
-              src={`http://localhost:5000${product.image}`}
+              src={`https://priti-backend.onrender.com${product.image}`}
               alt={product.name}
               className="h-60 w-full object-cover"
             />

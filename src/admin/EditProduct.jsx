@@ -52,7 +52,7 @@ export default function EditProduct() {
   // Load product data
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`https://priti-backend.onrender.com/api/products/${id}`)
       .then(res => {
         setData(res.data);
         setCategory(res.data.category);
@@ -92,7 +92,7 @@ export default function EditProduct() {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `https://priti-backend.onrender.com/api/products/${id}`,
         formData,
         {
           headers: {

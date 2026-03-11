@@ -93,7 +93,7 @@ export default function Navbar() {
                 }
 
                 const res = await axios.get(
-                  `http://localhost:5000/api/products/search?q=${value}`
+                  `https://priti-backend.onrender.com/api/products/search?q=${value}`
                 );
 
                 setResults(res.data);
@@ -129,9 +129,9 @@ export default function Navbar() {
                     <img
                       src={
                         p.images?.length
-                          ? `http://localhost:5000${p.images[0]}`
+                          ? `https://priti-backend.onrender.com${p.images[0]}`
                           : p.image
-                            ? `http://localhost:5000${p.image}`
+                            ? `https://priti-backend.onrender.com${p.image}`
                             : "/no-image.png"
                       }
                       alt={p.name}

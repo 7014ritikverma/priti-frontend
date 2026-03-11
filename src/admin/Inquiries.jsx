@@ -7,7 +7,7 @@ export default function Inquiries() {
 
   const loadInquiries = () => {
     axios
-      .get("http://localhost:5000/api/inquiries")
+      .get("https://priti-backend.onrender.com/api/inquiries")
       .then(res => setData(res.data));
   };
 
@@ -20,7 +20,7 @@ export default function Inquiries() {
     if (!window.confirm("Delete this inquiry?")) return;
 
     await axios.delete(
-      `http://localhost:5000/api/inquiries/${id}`
+      `https://priti-backend.onrender.com/api/inquiries/${id}`
     );
 
     alert("Inquiry Deleted");
@@ -82,9 +82,9 @@ export default function Inquiries() {
                       <img
                         src={
                           p.images?.length
-                            ? `http://localhost:5000${p.images[0]}`
+                            ? `https://priti-backend.onrender.com${p.images[0]}`
                             : p.image
-                              ? `http://localhost:5000${p.image}`
+                              ? `https://priti-backend.onrender.com${p.image}`
                               : ""
                         }
                         alt={p.name}
