@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 export default function Dashboard() {
 
@@ -10,12 +11,12 @@ export default function Dashboard() {
 
     // Fetch products
     axios
-      .get("https://priti-backend.onrender.com/api/products")
+      .get(`${API}/api/products`)
       .then(res => setProducts(res.data.length));
 
     // Fetch inquiries
     axios
-      .get("https://priti-backend.onrender.com/api/inquiries")
+      .get(`${API}/api/inquiries`)
       .then(res => setInquiries(res.data.length));
 
   }, []);

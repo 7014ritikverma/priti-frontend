@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { useQuote } from "../context/QuoteContext";
 import ProductGallery from "../components/ProductGallery";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 export default function FeaturedProducts() {
 
@@ -19,7 +20,7 @@ export default function FeaturedProducts() {
 
   useEffect(() => {
     axios
-      .get("https://priti-backend.onrender.com/api/products")
+      .get(`${API}/api/products`)
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -45,9 +46,9 @@ export default function FeaturedProducts() {
               onClick={() => navigate(`/product/${p._id}`)}
               src={
                 p.images?.length
-                  ? `https://priti-backend.onrender.com${p.images[0]}`
+                  ? `${API}${p.images[0]}`
                   : p.image
-                    ? `https://priti-backend.onrender.com${p.image}`
+                    ? `${API}${p.image}`
                     : "/no-image.png"
               }
               alt={p.name}
@@ -62,7 +63,7 @@ export default function FeaturedProducts() {
               </h3>
 
               <p className="text-[#b88a72] text-base font-semibold mb-3">
-                ₹ {p.price}
+                ₹ {Number(p.price).toLocaleString("en-IN")}
               </p>
 
               {/* Buttons */}
@@ -120,7 +121,7 @@ export default function FeaturedProducts() {
             </h2>
 
             <p className="text-[#b88a72] font-semibold">
-              ₹ {selectedProduct.price}
+              ₹ {Number(selectedProduct.price).toLocaleString("en-IN")}
             </p>
 
           </div>

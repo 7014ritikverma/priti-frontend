@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useQuote } from "../context/QuoteContext";
+const API = import.meta.env.VITE_API_URL;
 
 export default function CategoryPage() {
 
@@ -15,7 +16,7 @@ export default function CategoryPage() {
 
         axios
             .get(
-                `https://priti-backend.onrender.com/api/products/category/${category}/${sub}`
+                `${API}/api/products/category/${category}/${sub}`
             )
             .then(res => setProducts(res.data));
 
@@ -40,8 +41,8 @@ export default function CategoryPage() {
                         {/* IMAGE */}
 
                         <img
-                        onClick={() => navigate(`/product/${p._id}`)}
-                            src={`https://priti-backend.onrender.com${p.images?.[0]}`}
+                            onClick={() => navigate(`/product/${p._id}`)}
+                            src={`${API}${p.images?.[0]}`}
                             alt={p.name}
                             className="h-48 w-full object-cover rounded-t mb-3"
                         />
@@ -55,7 +56,9 @@ export default function CategoryPage() {
                         {/* PRICE */}
 
                         <p className="text-[#b88a72] font-bold mb-3">
-                            ₹ {p.price}
+                            
+                                ₹ {Number(p.price).toLocaleString("en-IN")}
+                           
                         </p>
 
                         {/* ⭐ BUTTONS */}

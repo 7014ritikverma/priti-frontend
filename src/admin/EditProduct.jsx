@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 const categories = {
   "LIVING ROOM": [
@@ -52,7 +53,7 @@ export default function EditProduct() {
   // Load product data
   useEffect(() => {
     axios
-      .get(`https://priti-backend.onrender.com/api/products/${id}`)
+      .get(`${API}/api/products/${id}`)
       .then(res => {
         setData(res.data);
         setCategory(res.data.category);
@@ -92,7 +93,7 @@ export default function EditProduct() {
     try {
 
       await axios.put(
-        `https://priti-backend.onrender.com/api/products/${id}`,
+        `${API}/api/products/${id}`,
         formData,
         {
           headers: {
@@ -208,7 +209,7 @@ export default function EditProduct() {
             <div key={index} className="relative">
 
               <img
-                src={`https://priti-backend.onrender.com${img}`}
+                src={`${API}${img}`}
                 className="w-24 h-24 object-cover rounded"
               />
 

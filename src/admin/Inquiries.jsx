@@ -1,13 +1,16 @@
+// 
+
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+const API = import.meta.env.VITE_API_URL;
 
 export default function Inquiries() {
 
   const [data, setData] = useState([]);
 
   const loadInquiries = () => {
-    axios
-      .get("https://priti-backend.onrender.com/api/inquiries")
+    axios.get(`${API}/api/inquiries`)
       .then(res => setData(res.data));
   };
 
@@ -19,9 +22,7 @@ export default function Inquiries() {
 
     if (!window.confirm("Delete this inquiry?")) return;
 
-    await axios.delete(
-      `https://priti-backend.onrender.com/api/inquiries/${id}`
-    );
+    await axios.delete(`${API}/api/inquiries/${id}`);
 
     alert("Inquiry Deleted");
 
@@ -31,44 +32,138 @@ export default function Inquiries() {
   return (
     <div>
 
-      <h1 className="text-3xl font-bold mb-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6">
         Customer Inquiries
       </h1>
 
-      <table className="w-full bg-white shadow rounded">
+      {/* DESKTOP TABLE */}
 
-        <thead className="bg-gray-200 w-full">
-          <tr>
-            <th className="p-3">Product</th>
-            <th className="">Name</th>
-            <th>Phone</th>
-            <th className="">Email</th>
-            <th>Message</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+      <div className="hidden lg:block overflow-x-auto">
 
-        <tbody>
+        <table className="w-full bg-white shadow rounded border border-gray-200">
 
-          {data.map(i => (
+          <thead className="bg-gray-100">
+            <tr className="text-left">
 
-            <tr key={i._id} className="border-t">
+              <th className="p-4 border ">Product</th>
+              <th className="p-4 border">Name</th>
+              <th className="p-4 border">Phone</th>
+              <th className="p-4 border">Email</th>
+              <th className="p-4 border">Message</th>
+              <th className="p-4 border">Date</th>
+              <th className="p-4 border">Action</th>
 
-              {/* <td className="p-3 text-center">
-               
-                <img
-                  src={
-                    i.products?.[0]?.images?.length
-                      ? `http://localhost:5000${i.products[0].images[0]}`
-                      : i.products?.[0]?.image
-                        ? `http://localhost:5000${i.products[0].image}`
-                        : ""
-                  }
-                  className="w-16 h-16 object-cover"
-                />
-              </td> */}
-              <td className="p-3">
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {data.length === 0 ? (
+
+              <tr>
+                <td colSpan="7" className="text-center p-10 text-gray-500 text-lg">
+                  No Inquiries Yet
+                </td>
+              </tr>
+
+            ) : (
+
+              data.map(i => (
+
+                <tr key={i._id} className="border-t hover:bg-gray-50">
+
+                  {/* PRODUCT */}
+                  <td className="p-4 border align-top min-w-[220px]">
+
+                    {i.products?.length > 0 ? (
+
+                      i.products.map((p, index) => (
+
+                        <div
+                          key={index}
+                          className="flex items-center gap-3 mb-2 whitespace-nowrap"
+                        >
+
+                          <img
+                            src={
+                              p.images?.length
+                                ? `${API}${p.images[0]}`
+                                : p.image
+                                  ? `${API}${p.image}`
+                                  : ""
+                            }
+                            className="w-14 h-14 object-cover rounded flex-shrink-0"
+                          />
+
+                          <div className="min-w-0">
+                            <p className="font-medium truncate max-w-[120px]">
+                              {p.name}
+                            </p>
+                            <p className="text-sm text-gray-600">
+                              ₹ {p.price}
+                            </p>
+                          </div>
+
+                        </div>
+
+                      ))
+
+                    ) : "No Products"}
+
+                  </td>
+
+                  <td className="p-4 border">{i.name}</td>
+                  <td className="p-4 border">{i.phone}</td>
+                  <td className="p-4 border break-all">{i.email}</td>
+                  <td className="p-4 border">{i.message}</td>
+
+                  <td className="p-4 border">
+                    {new Date(i.createdAt).toLocaleDateString()}
+                  </td>
+
+                  <td className="p-4 border">
+                    <button
+                      onClick={() => handleDelete(i._id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded"
+                    >
+                      Delete
+                    </button>
+                  </td>
+
+                </tr>
+
+              ))
+
+            )}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      {/* MOBILE VIEW */}
+
+      <div className="lg:hidden space-y-4">
+
+        {data.length === 0 ? (
+
+          <div className="text-center py-10 text-gray-500 text-lg">
+            No Inquiries Yet 
+          </div>
+
+        ) : (
+
+          data.map(i => (
+
+            <div
+              key={i._id}
+              className="bg-white shadow rounded p-4"
+            >
+
+              {/* PRODUCTS */}
+
+              <div className="mb-3">
 
                 {i.products?.length > 0 ? (
 
@@ -82,18 +177,19 @@ export default function Inquiries() {
                       <img
                         src={
                           p.images?.length
-                            ? `https://priti-backend.onrender.com${p.images[0]}`
+                            ? `${API}${p.images[0]}`
                             : p.image
-                              ? `https://priti-backend.onrender.com${p.image}`
+                              ? `${API}${p.image}`
                               : ""
                         }
-                        alt={p.name}
-                        className="w-14 h-14 object-cover rounded"
+                        className="w-12 h-12 object-cover rounded"
                       />
 
-                      <div className="text-left">
-                        <p className="font-medium">{p.name}</p>
-                        <p className="text-sm text-gray-600">
+                      <div>
+                        <p className="text-sm font-medium">
+                          {p.name}
+                        </p>
+                        <p className="text-xs text-gray-600">
                           ₹ {p.price}
                         </p>
                       </div>
@@ -102,41 +198,47 @@ export default function Inquiries() {
 
                   ))
 
-                ) : (
+                ) : "No Products"}
 
-                  "No Products"
+              </div>
 
-                )}
+              {/* DETAILS */}
 
-              </td>
+              <p className="text-sm">
+                <span className="font-semibold">Name:</span> {i.name}
+              </p>
 
-              <td className="p-3 text-center">{i.name}</td>
-              <td className="p-3 text-center">{i.phone}</td>
-              <td className="p-3 text-center">{i.email}</td>
-              <td className="p-3 text-center">{i.message}</td>
+              <p className="text-sm">
+                <span className="font-semibold">Phone:</span> {i.phone}
+              </p>
 
-              <td className="p-3 text-center">
-                {new Date(i.createdAt)
-                  .toLocaleDateString()}
-              </td>
+              <p className="text-sm">
+                <span className="font-semibold">Email:</span> {i.email}
+              </p>
 
-              <td className="p-3 text-center">
-                <button
-                  onClick={() => handleDelete(i._id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
-                >
-                  Delete
-                </button>
-              </td>
+              <p className="text-sm">
+                <span className="font-semibold">Message:</span> {i.message}
+              </p>
 
-            </tr>
+              <p className="text-sm">
+                <span className="font-semibold">Date:</span>{" "}
+                {new Date(i.createdAt).toLocaleDateString()}
+              </p>
 
-          ))}
+              <button
+                onClick={() => handleDelete(i._id)}
+                className="mt-3 bg-red-500 text-white px-4 py-1 rounded w-full"
+              >
+                Delete
+              </button>
 
-        </tbody>
+            </div>
 
-      </table>
+          ))
 
+        )}
+
+      </div>
     </div>
   );
 }

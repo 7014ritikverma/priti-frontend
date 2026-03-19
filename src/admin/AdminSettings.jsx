@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 export default function AdminSettings() {
 
@@ -14,7 +15,7 @@ export default function AdminSettings() {
     try {
 
       await axios.put(
-        "https://priti-backend.onrender.com/api/admin/update-admin",
+        `${API}/api/admin/update-admin`,
         {
           email,
           oldPassword,
@@ -38,7 +39,7 @@ export default function AdminSettings() {
 
   return (
 
-    <div className="p-10">
+    <div className="">
 
       <h1 className="text-2xl font-bold mb-6">
         Admin Settings

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 export default function Register() {
 
@@ -16,7 +17,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "https://priti-backend.onrender.com/api/admin/register",
+        `${API}/api/admin/register`,
         data
       );
 

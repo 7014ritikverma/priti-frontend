@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
+
+    const API = import.meta.env.VITE_API_URL;
+
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -18,8 +21,7 @@ export default function Login() {
         try {
 
             const res = await axios.post(
-                "https://priti-backend.onrender.com/api/admin/login",
-                data
+                `${API}/api/admin/login`, data
             );
 
             // ⭐ SAVE TOKEN

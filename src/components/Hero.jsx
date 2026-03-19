@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="relative">
+    <section className="relative bg-amber-600">
 
       {/* Background Image */}
       <img

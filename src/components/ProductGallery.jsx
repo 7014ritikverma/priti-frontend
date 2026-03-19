@@ -1,3 +1,5 @@
+const API = import.meta.env.VITE_API_URL;
+
 export default function ProductGallery({ product }) {
 
   const images =
@@ -13,7 +15,7 @@ export default function ProductGallery({ product }) {
 
   return (
     <img
-      src={`https://priti-backend.onrender.com${images[0]}`}
+      src={`${API}${images[0]}`}
       alt={product.name}
       className="w-[400px] h-[400px] object-cover rounded"
     />

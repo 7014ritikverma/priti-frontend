@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+const API = import.meta.env.VITE_API_URL;
 
 export default function MagnifierImage({ img }) {
 
@@ -27,7 +28,7 @@ export default function MagnifierImage({ img }) {
 
       <img
         ref={imgRef}
-        src={`https://priti-backend.onrender.com${img}`}
+        src={`${API}${img}`}
         className="w-full h-full object-cover rounded"
         alt=""
       />
@@ -36,7 +37,7 @@ export default function MagnifierImage({ img }) {
         <div
           className="absolute inset-0 rounded pointer-events-none"
           style={{
-            backgroundImage: `url(https://priti-backend.onrender.com${img})`,
+            backgroundImage: `url(${API}${img})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "200%",
             backgroundPosition: backgroundPos

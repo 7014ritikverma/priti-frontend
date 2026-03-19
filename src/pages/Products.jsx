@@ -3,19 +3,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-
 export default function Products() {
 
   const [products, setProducts] = useState([]);
-  
+  const API = import.meta.env.VITE_API_URL;
+
 
   useEffect(() => {
     axios
-      .get("https://priti-backend.onrender.com/api/products")
+      .get(`${API}/api/products`)
       .then(res => setProducts(res.data))
       .catch(err => console.log(err));
   }, []);
-  
+
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
@@ -35,7 +35,7 @@ export default function Products() {
           >
 
             <img
-              src={`https://priti-backend.onrender.com${product.image}`}
+              src={`${API}${product.image}`}
               alt={product.name}
               className="h-60 w-full object-cover"
             />
@@ -46,7 +46,7 @@ export default function Products() {
               </h3>
 
               <p className="text-[#b88a72] mt-2">
-                ₹ {product.price}
+                ₹ {Number(product.price).toLocaleString("en-IN")}
               </p>
             </div>
 
@@ -57,6 +57,6 @@ export default function Products() {
 
       </div>
     </div>
-    
+
   );
 }

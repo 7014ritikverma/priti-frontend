@@ -38,10 +38,10 @@ export default function Categories() {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
+    <section className="max-w-7xl mx-auto justify-center px-6 py-16">
 
       {/* Heading */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 ">
         <p className="text-sm text-gray-500 uppercase">
           Handcrafted With Integrity
         </p>
@@ -58,33 +58,35 @@ export default function Categories() {
       </div>
 
       {/* Category Cards */}
-      <div className="grid md:grid-cols-5 gap-6">
+      
+        <div className="grid md:grid-cols-5 gap-6 items-center w-full">
 
-        {items.map((item, i) => (
+          {items.map((item, i) => (
 
-          <div
-            key={i}
-            onClick={() =>
-              navigate(`/category/${item.category}/${item.sub}`)
-            }
-            className="cursor-pointer "
-          >
+            <div
+              key={i}
+              onClick={() =>
+                navigate(`/category/${item.category}/${item.sub}`)
+              }
+              className="cursor-pointer flex flex-col justify-center items-center"
+            >
 
-            <img
-              src={item.img}
-              
-              className="rounded-xl h-46 w-46 object-contain hover:scale-105 transition"
-            />
+              <img
+                src={item.img}
 
-            <p className="text-center mt-3 font-medium">
-              {item.title}
-            </p>
+                className="rounded-xl h-96 w-96 md:h-46 md:w-46 items-center object-contain xl:object-contain hover:scale-105 transition"
+              />
 
-          </div>
+              <p className="text-center mt-3 font-medium">
+                {item.title}
+              </p>
 
-        ))}
+            </div>
 
+          ))}
+        
       </div>
+
     </section>
   );
 }

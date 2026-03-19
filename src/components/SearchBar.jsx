@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
 
 export default function SearchBar() {
 
@@ -20,7 +21,7 @@ export default function SearchBar() {
         }
 
         const res = await axios.get(
-            `https://priti-backend.onrender.com/api/products/search?q=${value}`
+            `${API}/api/products/search?q=${value}`
         );
 
         setResults(res.data);
@@ -57,7 +58,7 @@ export default function SearchBar() {
                         >
 
                             <img
-                                src={`https://priti-backend.onrender.com${p.images?.[0]}`}
+                                src={`${API}${p.images?.[0]}`}
                                 className="w-12 h-12 object-cover rounded"
                             />
 
